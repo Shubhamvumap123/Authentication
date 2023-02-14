@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useRef } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -38,7 +38,7 @@ export default function Register() {
             password: "",
         }
     );
-
+const fileRef = useRef()
     // Alert
     const [ showAlert, setShowAlert ] = useState(false);
     const [ alertMessage, setAlertMessage ] = useState("");
@@ -105,6 +105,9 @@ export default function Register() {
                 console.log(newError);
             });
     };
+    const numberOption = {
+        Ind:+91
+    }
 
     return (
         <>
@@ -157,6 +160,27 @@ export default function Register() {
                                             children={ <CFaUserAlt color="gray.300" /> }
                                         />
                                         <Input type="email" id="email" placeholder="email address" onChange={ handleInputChange } />
+                                    </InputGroup>
+                                </FormControl>
+                                <FormControl>
+                                    <InputGroup>
+                                        <InputLeftElement
+                                            pointerEvents="none"
+                                            children={ <CFaUserAlt color="gray.300" /> }
+                                        />
+
+                                        <Input options={numberOption} type="number"  placeholder="Mobile" />
+                                    </InputGroup>
+                                </FormControl>
+                                {/* //add pdf file */}
+                                <FormControl>
+                                    <InputGroup>
+                                        <InputLeftElement
+                                            pointerEvents="none"
+                                            children={ <CFaUserAlt color="gray.300" /> }
+                                        />
+
+                                        <Input ref= {fileRef} type="file" accept="application/pdf,application/vnd.ms-excel" />
                                     </InputGroup>
                                 </FormControl>
                                 <FormControl>
